@@ -17,15 +17,24 @@
 
 // Get user inputs//
     // number of layers//
-var userNum = document.getElementById("layers");
+//var userNum = document.getElementById("layers");
 
     // character to build tree with//
-var userChar = document.getElementById("character");
+//var userChar = document.getElementById("character");
 
-//var userNum = 14;
+var userNum = 9;
+var userChar = "*"
 
+// creating arrays to be used later//
 var spaces = [];
 var symbols = [];
+var branches = [];
+
+
+// creating variables to be used later//
+var currentSpaces = "";
+var currentSymbols = "";
+var spaceSymbols = "";
 
   // loop to create spaces array//
 for (var r = userNum; r > 0; r--) {
@@ -39,5 +48,13 @@ for (var i = 1; i <= (spaces.length * 2); i = i  + 2) {
   symbols.push(i);
 }
 
-
 console.log(symbols);
+
+  // loop through spaces & symbols arrays to multiply string by array values//
+for (var i = 0; i < spaces.length; i++) {
+  currentSpaces = ' '.repeat(spaces[i]);
+  currentSymbols = userChar.repeat(symbols[i]);
+  spaceSymbols = currentSpaces + currentSymbols;
+  console.log(spaceSymbols);
+  //branches.push(spaceSymbols);
+}
