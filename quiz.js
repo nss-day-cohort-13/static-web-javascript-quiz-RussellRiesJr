@@ -17,13 +17,13 @@
 
 // Get user inputs//
     // number of layers//
-//var userNum = document.getElementById("layers");
+var userNum = document.getElementById("layers");
 
     // character to build tree with//
-//var userChar = document.getElementById("character");
+var userChar = document.getElementById("character");
 
-var userNum = 9;
-var userChar = "*"
+//var userNum = 5;
+//var userChar = "b"
 
 // creating arrays to be used later//
 var spaces = [];
@@ -36,25 +36,49 @@ var currentSpaces = "";
 var currentSymbols = "";
 var spaceSymbols = "";
 
-  // loop to create spaces array//
-for (var r = userNum; r > 0; r--) {
-  spaces.push(r);
+  // loop function to create spaces array//
+function spaceLoop(numValue) {
+  for (var r = numValue; r > 0; r--) {
+    spaces.push(r);
+  }
 }
 
-console.log(spaces);
-
-  // loop to create symbols array//
-for (var i = 1; i <= (spaces.length * 2); i = i  + 2) {
-  symbols.push(i);
+  // loop function to create symbols array//
+function symbolLoop(numValue, charValue) {
+  for (var i = 1; i <= (spaces.length * 2); i = i  + 2) {
+    symbols.push(i);
+  }
+  endBuild(charValue);
 }
-
-console.log(symbols);
 
   // loop through spaces & symbols arrays to multiply string by array values//
-for (var i = 0; i < spaces.length; i++) {
-  currentSpaces = ' '.repeat(spaces[i]);
-  currentSymbols = userChar.repeat(symbols[i]);
-  spaceSymbols = currentSpaces + currentSymbols;
-  console.log(spaceSymbols);
-  //branches.push(spaceSymbols);
+function endBuild(charValue) {
+  for (var i = 0; i < spaces.length; i++) {
+    currentSpaces = ' '.repeat(spaces[i]);
+    currentSymbols = charValue.repeat(symbols[i]);
+    spaceSymbols = currentSpaces + currentSymbols;
+    console.log(spaceSymbols);
+  }
 }
+
+// messing with functions//
+function startBuild(clickEvent) {
+  clickEvent.preventDefault();
+  var numValue = userNum.value;
+  var charValue = userChar.value;
+  if (numValue != "" && charValue != "") {
+    spaceLoop(numValue);
+    symbolLoop(numValue, charValue);
+  } else {
+    alert("Both fields must have a value!");
+  }
+}
+
+var run = document.getElementById("grow");
+run.addEventListener("click", startBuild);
+
+window.addEventListener("keyup", function(e) {
+  if (e.keyCode === 13) {
+    startBuild(e);
+  }
+})
