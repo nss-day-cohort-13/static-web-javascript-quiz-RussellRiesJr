@@ -13,3 +13,31 @@
 
 // If either of the input fields does not have a value in it when the user presses the enter key,
 // or presses the button, then display an alert stating that both fields must have a value.
+
+
+// Get user inputs//
+    // number of layers//
+var userNum = document.getElementById("layers");
+
+    // character to build tree with//
+var userChar = document.getElementById("character");
+
+//var userNum = 14;
+
+var spaces = [];
+var symbols = [];
+
+  // loop to create spaces array//
+for (var r = userNum; r > 0; r--) {
+  spaces.push(r);
+}
+
+console.log(spaces);
+
+  // loop to create symbols array//
+for (var i = 1; i <= (spaces.length * 2); i = i  + 2) {
+  symbols.push(i);
+}
+
+
+console.log(symbols);
