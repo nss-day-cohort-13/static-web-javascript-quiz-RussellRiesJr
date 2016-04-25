@@ -28,16 +28,16 @@ var userChar = document.getElementById("character");
 // creating arrays to be used later//
 var spaces = [];
 var symbols = [];
-var branches = [];
-
 
 // creating variables to be used later//
 var currentSpaces = "";
 var currentSymbols = "";
 var spaceSymbols = "";
 
-  // loop function to create spaces array//
+  // loop function to create spaces array - I used a decrement here because the number of spaces shrinks
+  // as you go down the triangle
 function spaceLoop(numValue) {
+  spaces = [];
   for (var r = numValue; r > 0; r--) {
     spaces.push(r);
   }
@@ -45,7 +45,8 @@ function spaceLoop(numValue) {
 
   // loop function to create symbols array//
 function symbolLoop(numValue, charValue) {
-  for (var i = 1; i <= (spaces.length * 2); i = i  + 2) {
+  symbols = [];
+  for (var i = 1; i <= (spaces.length * 2); i += 2) {
     symbols.push(i);
   }
   endBuild(charValue);
@@ -66,7 +67,7 @@ function startBuild(clickEvent) {
   clickEvent.preventDefault();
   var numValue = userNum.value;
   var charValue = userChar.value;
-  if (numValue != "" && charValue != "") {
+  if (numValue !== "" && charValue !== "") {
     spaceLoop(numValue);
     symbolLoop(numValue, charValue);
   } else {
@@ -77,8 +78,8 @@ function startBuild(clickEvent) {
 var run = document.getElementById("grow");
 run.addEventListener("click", startBuild);
 
-window.addEventListener("keyup", function(e) {
+document.addEventListener("keyup", function(e) {
   if (e.keyCode === 13) {
     startBuild(e);
   }
-})
+});
